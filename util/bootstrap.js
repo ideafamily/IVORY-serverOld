@@ -3,12 +3,11 @@
 /*npm package*/
 import Winston          from 'winston';
 import Promise          from 'bluebird';
-import Path             from 'path';
 
 /*customer library*/
 import AppSingleton     from './appsingleton';
 
-function bootstrap(argument) {
+function bootstrap() {
   var TAG = 'bootstrap';
   var sharedInstance = AppSingleton.getInstance();
   sharedInstance.log = new (Winston.Logger)({
