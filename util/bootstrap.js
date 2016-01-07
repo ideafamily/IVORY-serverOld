@@ -7,6 +7,7 @@ import passport         from 'passport';
 
 /*customer library*/
 import AppSingleton     from './appsingleton';
+import token            from '../lib/token/token';
 
 function bootstrap() {
   var TAG = 'bootstrap';
@@ -26,6 +27,7 @@ function bootstrap() {
         warn    :   (tag, log) => {sharedInstance.log.warn(`[${tag}] : ${log}`);}
     };
     sharedInstance.passport = passport;
+    token.init();
     sharedInstance.L.info(TAG, "Bootstrap complete!");
 }
 

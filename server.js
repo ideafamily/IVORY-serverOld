@@ -26,8 +26,9 @@ app.use(sharedInstance.passport.initialize());
 dbPoolInit();
 fblogin();
 //console.log(sharedInstance.passport);
+console.log(sharedInstance);
 app.use(router);
-app.post('/auth/facebook/token',
+app.get('/auth/facebook/token',
   sharedInstance.passport.authenticate('facebook-token',{ session: false }),
   function (req, res) {
     // do something with req.user
