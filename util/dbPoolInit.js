@@ -11,9 +11,9 @@ function dbPoolInit() {
   var sharedInstance = AppSingleton.getInstance();
   var pool = mysql.createPool({
     connectionLimit : 10,
-    host            : process.env.host,
-    user            : process.env.user,
-    password        : process.env.password
+    host            : process.env.HOST,
+    user            : process.env.USERNAME,
+    password        : process.env.PASSWORD
   });
   sharedInstance.pool = pool;
 }

@@ -26,7 +26,7 @@ function bootstrap() {
         warn    :   (tag, log) => {sharedInstance.log.warn(`[${tag}] : ${log}`);}
     };
     sharedInstance.passport = passport;
-    sharedInstance.L.info(TAG, "Bootstrap complete!");  
+    sharedInstance.L.info(TAG, "Bootstrap complete!");
 }
 
 module.exports = bootstrap;

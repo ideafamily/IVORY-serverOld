@@ -25,8 +25,16 @@ app.use(bodyparser.json());
 app.use(sharedInstance.passport.initialize());
 dbPoolInit();
 fblogin();
-console.log(sharedInstance.passport);
+//console.log(sharedInstance.passport);
 app.use(router);
+app.post('/auth/facebook/token',
+  sharedInstance.passport.authenticate('facebook-token',{ session: false }),
+  function (req, res) {
+    // do something with req.user
+    //console.log(sharedInstance.passport);
+    res.send(200);
+  }
+);
 var PORT = process.env.PORT || 4000;
 
 startup().then(function() {

@@ -5,6 +5,7 @@ import FacebookTokenStrategy from 'passport-facebook-token';
 
 /*customer library*/
 import appsingleton          from './appsingleton';
+import user                  from '../lib/user/user';
 
 var sharedInstance = appsingleton.getInstance();
 
@@ -13,8 +14,12 @@ function fblogin(){
     clientID      : process.env.clientID,
     clientSecret  : process.env.clientSecret
   },function (accessToken, refreshToken, profile, done) {
-    console.log(profile);
-    return done(error,profile);
+    var pool = sharedInstance.pool;
+    user.findOrCreate(pool,profile._json).then(function(id) {
+      return done(null,profile);
+    }).catch(function(err) {
+      return done(err);
+    });
   }));
 }
 
