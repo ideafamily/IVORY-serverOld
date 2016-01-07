@@ -1,4 +1,4 @@
 #!/bin/bash
 while read line; do export "$line";
-done < .devenv;
+done < .env;
 babel-node server;
