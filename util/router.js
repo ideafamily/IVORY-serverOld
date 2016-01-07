@@ -5,22 +5,19 @@ import express from 'express';
 
 /*customer library*/
 import appsingleton from './appsingleton.js';
+import middleware   from '../lib/middleware/middleware';
 
-var router = express.Router();
 var sharedInstance = appsingleton.getInstance();
 
-router.get('/',function(req,res) {
-  console.log(sharedInstance.passport);
-  res.send('hello');
-});
-/*
-router.post('/auth/facebook/token',
-  sharedInstance.passport.authenticate('facebook-token',{ session: false }),
-  function (req, res) {
-    // do something with req.user
+module.exports = function() {
+  var app = sharedInstance.app;
+  app.get('/',function(req,res) {
     console.log(sharedInstance.passport);
-    res.send(200);
-  }
-);*/
-
-module.exports = router;
+    res.send('hello');
+  });
+  
+  app.get('/auth/facebook/token',
+    sharedInstance.passport.authenticate('facebook-token',{ session: false }),
+    middleware.makeToken
+  );
+};

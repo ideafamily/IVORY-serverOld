@@ -16,7 +16,7 @@ function fblogin(){
   },function (accessToken, refreshToken, profile, done) {
     var pool = sharedInstance.pool;
     user.findOrCreate(pool,profile._json).then(function(id) {
-      return done(null,profile);
+      return done(null,{'userid' : id});
     }).catch(function(err) {
       return done(err);
     });
