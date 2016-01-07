@@ -3,6 +3,7 @@
 /*npm package*/
 import Winston          from 'winston';
 import Promise          from 'bluebird';
+import passport         from 'passport';
 
 /*customer library*/
 import AppSingleton     from './appsingleton';
@@ -24,7 +25,8 @@ function bootstrap() {
         error   :   (tag, log) => {sharedInstance.log.error(`[${tag}] : ${log}`);},
         warn    :   (tag, log) => {sharedInstance.log.warn(`[${tag}] : ${log}`);}
     };
-    sharedInstance.L.info(TAG, "Bootstrap complete!");
+    sharedInstance.passport = passport;
+    sharedInstance.L.info(TAG, "Bootstrap complete!");  
 }
 
 module.exports = bootstrap;
