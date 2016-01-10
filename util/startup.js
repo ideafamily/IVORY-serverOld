@@ -18,6 +18,15 @@ function startup() {
   var list = [new Promise(function(resolve, reject) {
     return resolve();
   })];
+  list.push(new Promise(function(resolve, reject) {
+    sharedInstance.pool.getConnection(function(err,connection) {
+      if(err){
+        return reject(err);
+      }
+      connection.release();
+      return resolve({ });
+    });
+  }));
   return new Promise(function(resolve, reject) {
     Q.all(list).then(function () {
       sharedInstance.L.info(TAG, "Startup done!");
