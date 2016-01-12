@@ -16,6 +16,8 @@ module.exports = function() {
     res.send('hello');
   });
 
+  app.get('/message',middleware.verifyToken,middleware.getUserMessage);
+
   app.get('/auth/facebook/token',
     sharedInstance.passport.authenticate('facebook-token',{ session: false }),
     middleware.makeToken
