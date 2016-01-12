@@ -15,8 +15,8 @@ function fblogin(){
     clientSecret  : process.env.clientSecret
   },function (accessToken, refreshToken, profile, done) {
     var pool = sharedInstance.pool;
-    user.findOrCreate(pool,profile).then(function(id) {
-      return done(null,{'userid' : id});
+    user.findOrCreate(pool,profile).then(function(data) {
+      return done(null,data);
     }).catch(function(err) {
       return done(err);
     });
